@@ -3,7 +3,7 @@ package POE::Component::WWW::Pastebin::Bot::Pastebot::Create;
 use warnings;
 use strict;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 use Carp;
 use POE;
@@ -44,6 +44,11 @@ sub _process_request {
     }
     
     my $paster = $self->{obj};
+
+    if ( exists $in_ref->{site} ) {
+        $paster->site( $in_ref->{site} );
+    }
+
     my $response_ref = $paster->paste( @args );
     if ( $response_ref ) {
         $in_ref->{uri} = $paster->uri;
@@ -241,6 +246,16 @@ B<Defaults to:> C<''> (empty; no name)
 B<Optional>. Specifies a short summary of the paste contents.
 B<Defaults to:> C<''> (empty; no summary)
 
+=head3 C<site>
+
+    { site  => 'http://erxz.com/pb' }
+
+B<Optional>. Must contain a URI to pastebin site powered by L<Bot::Pastebot>
+(note: don't end it with specific channel suffix). If specified will
+make the component change the pastebin used for pasting. B<Note:> the
+specified pastebin is not restored back to the original value.
+B<By default> this argument is not specified.
+
 =head3 C<session>
 
     { session => 'other' }
@@ -306,7 +321,8 @@ its value will contain an explanation of the failure.
     }
 
 Valid arguments to C<paste()> event/method (i.e. the C<summary>,
-C<content>, C<channel> and C<nick>) will be present in output containing
+C<content>, C<channel>, C<site> and C<nick>) will be present in output
+containing
 same values as you gave them when calling C<paste()> event/method.
 
 =head2 user defined

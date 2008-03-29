@@ -1,5 +1,9 @@
 Revision history for POE-Component-WWW-Pastebin-Bot-Pastebot-Create
 
+0.002   Mar 28, 2008
+        Added the "site" argument to paste() event/method
+        to allow dynamic pastebin site changing
+
 0.001   Mar 27, 2008
         First version, released on an unsuspecting world.
 
