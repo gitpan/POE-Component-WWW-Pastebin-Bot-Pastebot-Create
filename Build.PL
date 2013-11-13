@@ -14,8 +14,10 @@ my $builder = Module::Build->new(
         'Carp'                                     => 1.04,
         'POE'                                      => 0.9999,
         'POE::Component::NonBlockingWrapper::Base' => 0.002,
-        'WWW::Pastebin::Bot::Pastebot::Create'     => 0.001,
+        'WWW::Pastebin::Bot::Pastebot::Create'     => 0.002,
+        'perl' => '5.006',
     },
+    configure_requires => { 'Module::Build' => 0 },
     add_to_cleanup      => [ 'POE-Component-WWW-Pastebin-Bot-Pastebot-Create-*' ],
     create_makefile_pl => 'traditional',
 );

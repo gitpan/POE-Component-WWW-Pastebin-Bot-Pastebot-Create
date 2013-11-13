@@ -3,7 +3,7 @@ package POE::Component::WWW::Pastebin::Bot::Pastebot::Create;
 use warnings;
 use strict;
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 use Carp;
 use POE;
@@ -57,6 +57,12 @@ sub _process_request {
         $in_ref->{error} = $paster->error;
     }
 }
+
+1;
+
+__END__
+
+=encoding utf8
 
 =head1 NAME
 
